@@ -16,7 +16,7 @@ func (t *stringT) Get(path ...interface{}) T {
 	}
 	switch i := path[0].(type) {
 	case int:
-		return WrapString(string(t.val[i]))
+		return String(string(t.val[i]))
 	}
 
 	return &invalidT{baseT{}, fmt.Errorf("GetIndex %v from simple value", path)}
@@ -31,7 +31,7 @@ func (t *stringT) LastError() error {
 }
 
 func (t *stringT) ToBool() bool {
-	str := t.ToString()
+	str := t.String()
 	if str == "0" {
 		return false
 	}
@@ -150,7 +150,7 @@ func (t *stringT) ToFloat64() float64 {
 	return parsed
 }
 
-func (t *stringT) ToString() string {
+func (t *stringT) String() string {
 	return t.val
 }
 

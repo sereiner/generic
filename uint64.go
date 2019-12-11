@@ -53,7 +53,7 @@ func (t *uint64T) ToFloat64() float64 {
 	return float64(t.val)
 }
 
-func (t *uint64T) ToString() string {
+func (t *uint64T) String() string {
 	return strconv.FormatUint(t.val, 10)
 }
 

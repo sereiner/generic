@@ -6,7 +6,7 @@ import (
 
 type float32T struct {
 	baseT
-	val float64
+	val float32
 }
 
 func (T *float32T) ValueType() ValueType {
@@ -55,15 +55,15 @@ func (T *float32T) ToUint64() uint64 {
 }
 
 func (T *float32T) ToFloat32() float32 {
-	return float32(T.val)
-}
-
-func (T *float32T) ToFloat64() float64 {
 	return T.val
 }
 
-func (T *float32T) ToString() string {
-	return strconv.FormatFloat(T.val, 'E', -1, 64)
+func (T *float32T) ToFloat64() float64 {
+	return float64(T.val)
+}
+
+func (T *float32T) String() string {
+	return strconv.FormatFloat(T.ToFloat64(), 'E', -1, 64)
 }
 
 func (T *float32T) GetInterface() interface{} {

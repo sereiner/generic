@@ -48,8 +48,8 @@ func (T *nilT) ToFloat64() float64 {
 	return 0
 }
 
-func (T *nilT) ToString() string {
-	return ""
+func (T *nilT) String() string {
+	return "nil"
 }
 
 func (T *nilT) GetInterface() interface{} {

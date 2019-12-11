@@ -11,7 +11,7 @@ type sliceT struct {
 	val reflect.Value
 }
 
-func wrapSlice(val interface{}) *sliceT {
+func Slice(val interface{}) *sliceT {
 	return &sliceT{baseT{}, reflect.ValueOf(val)}
 }
 
@@ -83,7 +83,7 @@ func (t *sliceT) ToFloat64() float64 {
 	return 1
 }
 
-func (t *sliceT) ToString() string {
+func (t *sliceT) String() string {
 	str, _ := jsoniter.MarshalToString(t.val.Interface())
 	return str
 }
@@ -107,7 +107,7 @@ func (t *sliceT) Get(path ...interface{}) T {
 					mappedAll = append(mappedAll, mapped)
 				}
 			}
-			return wrapSlice(mappedAll)
+			return Slice(mappedAll)
 		}
 		return newInvalidT(path)
 	default:

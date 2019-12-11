@@ -62,7 +62,7 @@ func (T *float64T) ToFloat64() float64 {
 	return T.val
 }
 
-func (T *float64T) ToString() string {
+func (T *float64T) String() string {
 	return strconv.FormatFloat(T.val, 'E', -1, 64)
 }
 

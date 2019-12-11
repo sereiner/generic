@@ -55,7 +55,7 @@ func (T *invalidT) ToFloat64() float64 {
 	return 0
 }
 
-func (T *invalidT) ToString() string {
+func (T *invalidT) String() string {
 	return ""
 }
 

@@ -12,7 +12,7 @@ type mapT struct {
 	val reflect.Value
 }
 
-func wrapMap(val interface{}) *mapT {
+func Map(val interface{}) *mapT {
 	return &mapT{baseT{}, nil, reflect.ValueOf(val)}
 }
 
@@ -60,7 +60,7 @@ func (t *mapT) ToFloat64() float64 {
 	return 0
 }
 
-func (t *mapT) ToString() string {
+func (t *mapT) String() string {
 	str, err := jsoniter.MarshalToString(t.val.Interface())
 	t.err = err
 	return str
@@ -82,7 +82,7 @@ func (t *mapT) Get(path ...interface{}) T {
 					mappedAll[keyAsStr] = mapped
 				}
 			}
-			return wrapMap(mappedAll)
+			return Map(mappedAll)
 		}
 		return newInvalidT(path)
 	default:

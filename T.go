@@ -23,7 +23,7 @@ type T interface {
 	ToUint64() uint64
 	ToFloat32() float32
 	ToFloat64() float64
-	ToString() string
+	String() string
 	Get(path ...interface{}) T
 	Size() int
 	Keys() []string
@@ -44,34 +44,34 @@ func (T *baseT) Keys() []string {
 	return []string{}
 }
 
-func WrapInt32(val int32) T {
+func Int32(val int32) T {
 	return &int32T{baseT{}, val}
 }
 
-func WrapInt64(val int64) T {
+func Int64(val int64) T {
 	return &int64T{baseT{}, val}
 }
 
-func WrapUint32(val uint32) T {
+func Uint32(val uint32) T {
 	return &uint32T{baseT{}, val}
 }
 
-func WrapUint64(val uint64) T {
+func Uint64(val uint64) T {
 	return &uint64T{baseT{}, val}
 }
 
-func WrapFloat64(val float64) T {
+func Float64(val float64) T {
 	return &float64T{baseT{}, val}
 }
-func WrapFloat32(val float64) T {
+func Float32(val float32) T {
 	return &float32T{baseT{}, val}
 }
 
-func WrapString(val string) T {
+func String(val string) T {
 	return &stringT{baseT{}, val}
 }
 
-func WrapBool(b bool) T {
+func Bool(b bool) T {
 	return &boolT{baseT{}, b}
 }
 
@@ -85,52 +85,52 @@ func Wrap(val interface{}) T {
 	typ := reflect2.TypeOf(val)
 	switch typ.Kind() {
 	case reflect.Array:
-		return wrapArray(val)
+		return Array(val)
 	case reflect.Slice:
-		return wrapSlice(val)
+		return Slice(val)
 	case reflect.Struct:
-		return wrapStruct(val)
+		return Struct(val)
 	case reflect.Map:
-		return wrapMap(val)
+		return Map(val)
 	case reflect.String:
-		return WrapString(val.(string))
+		return String(val.(string))
 	case reflect.Int:
 		if strconv.IntSize == 32 {
-			return WrapInt32(int32(val.(int)))
+			return Int32(int32(val.(int)))
 		}
-		return WrapInt64(int64(val.(int)))
+		return Int64(int64(val.(int)))
 	case reflect.Int8:
-		return WrapInt32(int32(val.(int8)))
+		return Int32(int32(val.(int8)))
 	case reflect.Int16:
-		return WrapInt32(int32(val.(int16)))
+		return Int32(int32(val.(int16)))
 	case reflect.Int32:
-		return WrapInt32(val.(int32))
+		return Int32(val.(int32))
 	case reflect.Int64:
-		return WrapInt64(val.(int64))
+		return Int64(val.(int64))
 	case reflect.Uint:
 		if strconv.IntSize == 32 {
-			return WrapUint32(uint32(val.(uint)))
+			return Uint32(uint32(val.(uint)))
 		}
-		return WrapUint64(uint64(val.(uint)))
+		return Uint64(uint64(val.(uint)))
 	case reflect.Uintptr:
 		if ptrSize == 32 {
-			return WrapUint32(uint32(val.(uintptr)))
+			return Uint32(uint32(val.(uintptr)))
 		}
-		return WrapUint64(uint64(val.(uintptr)))
+		return Uint64(uint64(val.(uintptr)))
 	case reflect.Uint8:
-		return WrapUint32(uint32(val.(uint8)))
+		return Uint32(uint32(val.(uint8)))
 	case reflect.Uint16:
-		return WrapUint32(uint32(val.(uint16)))
+		return Uint32(uint32(val.(uint16)))
 	case reflect.Uint32:
-		return WrapUint32(uint32(val.(uint32)))
+		return Uint32(uint32(val.(uint32)))
 	case reflect.Uint64:
-		return WrapUint64(val.(uint64))
+		return Uint64(val.(uint64))
 	case reflect.Float32:
-		return WrapFloat32(float64(val.(float32)))
+		return Float32(val.(float32))
 	case reflect.Float64:
-		return WrapFloat64(val.(float64))
+		return Float64(val.(float64))
 	case reflect.Bool:
-		return WrapBool(val.(bool))
+		return Bool(val.(bool))
 
 	}
 	return &invalidT{baseT{}, fmt.Errorf("unsupported type: %v", typ)}

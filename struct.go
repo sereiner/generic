@@ -14,7 +14,7 @@ type structT struct {
 	val reflect.Value
 }
 
-func wrapStruct(val interface{}) *structT {
+func Struct(val interface{}) *structT {
 	if reflect2.TypeOf(val).Kind() != reflect.Struct {
 		panic("wrapArray param must be struct!")
 	}
@@ -66,7 +66,7 @@ func (t *structT) ToFloat64() float64 {
 	return 0
 }
 
-func (t *structT) ToString() string {
+func (t *structT) String() string {
 	str, err := jsoniter.MarshalToString(t.val.Interface())
 	t.err = err
 	return str
@@ -95,7 +95,7 @@ func (t *structT) Get(path ...interface{}) T {
 					}
 				}
 			}
-			return wrapMap(mappedAll)
+			return Map(mappedAll)
 		}
 		return newInvalidT(path)
 	default:

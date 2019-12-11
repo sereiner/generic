@@ -71,7 +71,7 @@ func (b *boolT) ToFloat64() float64 {
 	return 0
 }
 
-func (b *boolT) ToString() string {
+func (b *boolT) String() string {
 	return strconv.FormatBool(b.val)
 }
 
